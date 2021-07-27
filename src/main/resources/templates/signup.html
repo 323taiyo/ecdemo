@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head">
+<title>SignUpPage</title>
+</head>
+<body>
+<div th:insert="menu"></div>
+<div class="dodai">
+    <h1>Shopping</h1>
+    <div class="check" th:if="${validationError}" th:each="error : ${validationError}">
+        <p th:text="${error}"></p>
+    </div>
+    <form th:action="@{/signup}" th:object="${user}" th:method="post">
+        ID
+        <input type="text" th:field="*{id}"><br>
+        Password
+        <input type="password" th:field="*{pass}"><br>
+        Name
+        <input type="text" th:field="*{name}"><br>
+        Address
+        <input type="text" th:field="*{address}"><br>
+        Tel
+        <input type="text" th:field="*{tel}"><br>
+
+        <button>SignUp</button>
+
+    </form>
+</div>
+</body>
+</html>

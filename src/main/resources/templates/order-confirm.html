@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head th:insert="head">
+<title>SignInPage</title>
+</head>
+<body>
+<div th:insert="menu"></div>
+<div class="dodai">
+    <h1>Shopping</h1>
+    <table>
+        <tr>
+            <th colspan="2">商品名</th>
+            <th>単価</th>
+            <th>注文数</th>
+        </tr>
+        <tr th:each="cart : ${carts}" th:object="${cart}">
+            <td><img src="*{img}"></td>
+            <td th:text="*{name}"></td>
+            <td th:text="*{price}"></td>
+            <td th:text="*{quantity}"></td>
+        </tr>
+    </table>
+    <form th:action="@{/order-history}" th:object="${order}" th:method="post">
+        <input type="text" th:field="*{address}">
+        <button>注文する</button>
+    </form>
+
+</div>
+</body>
+</html>
