@@ -29,6 +29,12 @@ public class SignInController {
     @Autowired
     HttpSession session;
 
+    @GetMapping
+    public String SignIn(Model model) {
+        model.addAttribute("user", new User());
+        return "signin";
+    }
+
     @PostMapping
     public String SignIn(Model model, User user) {
         Map<String, Object> umap = userService.selectMap(user.getId());

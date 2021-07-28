@@ -1,5 +1,10 @@
-<div class="migiue">
-  <p th:text="${u_id}">さん
+<div class="migiue" th:if="${session.u_id!=null}">
+  <span th:text="${session.u_id}"></span>
+  <a href="/signout">SignOut</a>
+</div>
+<div class="migiue" th:if="${session.u_id==null}">
+  <span th:text="Guest"></span>
+  <a href="/signin">SignIn</a>
 </div>
 <nav id="menu">
   <ul>

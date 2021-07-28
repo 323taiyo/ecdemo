@@ -12,8 +12,7 @@
             <th>注文日時</th>
         </tr>
         <tr th:each="order : ${orders}" th:object="${order}">
-            <td th:text="*{date}"></td>
-            <td><a th:href="@{'/order-detail?id=' + *{id}}">詳細</a></td>
+            <td><a th:href="@{'/order-detail?id=' + *{id}}" th:text="*{date}"></a></td>
         </tr>
     </table>
     <p th:if="${orders.size()}==0">注文がありません</p>

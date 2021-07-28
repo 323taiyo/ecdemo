@@ -11,15 +11,15 @@
         <p th:text="${error}"></p>
     </div>
     <form th:action="@{/signup}" th:object="${user}" th:method="post">
-        ID
+        <p>ID</p>
         <input type="text" th:field="*{id}"><br>
-        Password
+        <p>Password</p>
         <input type="password" th:field="*{pass}"><br>
-        Name
+        <p>Name</p>
         <input type="text" th:field="*{name}"><br>
-        Address
+        <p>Address</p>
         <input type="text" th:field="*{address}"><br>
-        Tel
+        <p>Tel</p>
         <input type="text" th:field="*{tel}"><br>
 
         <button>SignUp</button>

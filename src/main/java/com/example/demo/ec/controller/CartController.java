@@ -38,6 +38,7 @@ public class CartController {
         List<Map<String,Object>> list = cartService.selectList((String)session.getAttribute("u_id"));
         ArrayList<Cart> carts = new ArrayList<>();
         Cart cart;
+        int sum = 0;
         for(Map<String,Object> cmap: list){
             Map<String,Object> pmap = productService.selectMap((int)cmap.get("p_id"));
             cart = new Cart();
@@ -48,12 +49,14 @@ public class CartController {
             cart.setImage((String)pmap.get("image"));
             if((int)pmap.get("stock")>(int)cmap.get("quantity")){
                 carts.add(cart);
+                sum += cart.getPrice()*cart.getQuantity();
             }else{
                 //消した場合のメッセージ表示を入れる
                 cartService.deleteCart((String)session.getAttribute("u_id"), (int)cmap.get("p_id"));
             }
         }
         model.addAttribute("carts", carts);
+        model.addAttribute("sum", sum);
         return "cart";
     }
 
@@ -67,6 +70,7 @@ public class CartController {
         cartService.insertCart((String)session.getAttribute("u_id"), cart);
         List<Map<String,Object>> list = cartService.selectList((String)session.getAttribute("u_id"));
         ArrayList<Cart> carts = new ArrayList<>();
+        int sum = 0;
         for(Map<String,Object> cmap: list){
             Map<String,Object> pmap = productService.selectMap((int)cmap.get("p_id"));
             cart = new Cart();
@@ -77,12 +81,14 @@ public class CartController {
             cart.setImage((String)pmap.get("image"));
             if((int)pmap.get("stock")>(int)cmap.get("quantity")){
                 carts.add(cart);
+                sum += cart.getPrice()*cart.getQuantity();
             }else{
                 //消した場合のメッセージ表示を入れる
                 cartService.deleteCart((String)session.getAttribute("u_id"), (int)cmap.get("p_id"));
             }
         }
         model.addAttribute("carts", carts);
+        model.addAttribute("sum", sum);
         return "cart";
     }
 

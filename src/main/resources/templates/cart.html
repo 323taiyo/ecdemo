@@ -9,18 +9,18 @@
     <h1>Shopping</h1>
     <table th:if="${carts.size()}!=0">
         <tr>
-            <th colspan="2">商品名</th>
+            <th>商品名</th>
             <th>単価</th>
             <th>注文数</th>
         </tr>
         <tr th:each="cart : ${carts}" th:object="${cart}">
-            <td><img src="*{img}"></td>
-            <td th:text="*{name}"></td>
-            <td th:text="*{price}"></td>
-            <td th:text="*{quantity}"></td>
+            <td><a th:href="@{'/?id=' + *{id}}" th:text="*{name}"></a></td>
+            <td><a th:href="@{'/?id=' + *{id}}" th:text="*{price}"></a></td>
+            <td><a th:href="@{'/?id=' + *{id}}" th:text="*{quantity}"></a></td>
         </tr>
     </table>
     <form th:action="@{/order-confirm}" th:method="post" th:if="${carts.size()}!=0">
+        <p th:text="|合計：${sum}円|"></p>
         <button>レジへ進む</button>
     </form>
     <p th:if="${carts.size()}==0">カートに入っていません</p>

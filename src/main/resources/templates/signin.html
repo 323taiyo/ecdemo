@@ -8,9 +8,9 @@
 <div class="dodai">
     <h1>Shopping</h1>
     <form th:action="@{/signin}" th:object="${user}" th:method="post">
-        ID
+        <p>ID</p>
         <input type="text" th:field="*{id}"><br>
-        Password
+        <p>Password</p>
         <input type="password" th:field="*{pass}"><br>
 
         <button>SignIn</button>
